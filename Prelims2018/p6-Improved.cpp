@@ -40,8 +40,9 @@ string comp2(string a,string b){
 
 int main(){
 	m['T']='A',m['A']='T',m['G']='C',m['C']='G';
-	string a,b="";
+	string a,g,b="";
 	cin >> a;
+	g=a;
 	vector<string > v;
 	for(int i=0;a.size()>0;i++){
 		b = a[0] + b;
@@ -50,9 +51,10 @@ int main(){
 	}
 	sort(v.begin(),v.end(),comp);
 	reverse(v[0].begin(),v[0].end());
-	cout << v[0] << ' ';
-	reverse(v[0].begin(),v[0].end());
 	for(int i=0;i<v[0].size();i++){
 		cout << m[v[0][i]];
-	}
+	}cout << ' ';
+	if(g.find(v[0])==string::npos)
+		reverse(v[0].begin(),v[0].end());
+	cout << v[0] << ' ';
 }
