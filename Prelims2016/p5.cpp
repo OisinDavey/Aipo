@@ -15,15 +15,14 @@ typedef unsigned long long ull;
 const ull mod = 1000000007;
 
 int main(){
-	int n,maxx=0;
+	int n,maxx=0,maxx2=0;
 	cin >> n;
 	int a[n],b[n];
 	rep(0,n)
 		cin >> a[i];
 	for(int i=n-1;i>=0;i--){
 		maxx=max(maxx,a[i]);
-		b[i]=maxx-a[i];
+		maxx2=max(maxx2,maxx-a[i]);
 	}
-	sort(b,b+n,greater<int>());
-	cout << b[0];
+	cout << maxx2;
 }
