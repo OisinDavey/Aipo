@@ -32,16 +32,22 @@ int dx8[] = {+1, 0, -1, 0, +1, +1, -1, -1};
 int dy8[] = {0, +1, 0, -1, +1, -1, +1, -1};
 
 int main(){
-	int n;
+	ll n;
 	cin >> n;
 	while(n--){
-		ll t,a=0,b=0;
+		ll t;
+		int a=0,j=0;
 		cin >> t;
-		while(t>0){
-			(t%2)?a++:b++;
-			t=floor(t/2);
-		}
-		cout << ((a>b)?1:((a<b)?(-1):0)) << endl;
+		string s = bitset<32>(t).to_string();
+		rep(0,s.size()){
+			if(s[i]=='1'){
+				j=i;
+				break;
+			}
+		}	
+		rep(j,s.size())
+			(s[i]=='1')?a++:a--;
+		cout << ((a==0)?0:((a>0)?1:-1)) << endl;
 	}
 	
 }

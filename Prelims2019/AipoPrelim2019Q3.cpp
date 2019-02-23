@@ -26,36 +26,40 @@ typedef unsigned long long ull;
 typedef pair<int,int> ii;
 typedef pair<float,float> ff;
 
-int dx4[] = {0, 0, +1, -1};
-int dy4[] = {+1, -1, 0, 0};
-int dx8[] = {+1, 0, -1, 0, +1, +1, -1, -1};
-int dy8[] = {0, +1, 0, -1, +1, -1, +1, -1};
+int x4[] = {0, 0, +1, -1};
+int y4[] = {+1, -1, 0, 0};
+int x8[] = {+1, 0, -1, 0, +1, +1, -1, -1};
+int y8[] = {0, +1, 0, -1, +1, -1, +1, -1};
 
 int n,m;
 
 bool bound(int x, int y){
 	return (x>=0&&x<n&&y>=0&&y<m);
+	//return 1;
 }
 
 int main(){
-	
 	cin >> n >> m;
 	char a[n][m];
+	int b[n][m];
+	memset(b,0,sizeof(b));
 	rep(0,n)
 		rup(0,m)
 			cin >> a[i][j];
+	rep(0,n)
+		rup(0,m)
+			if(a[i][j]=='x'){
+				b[i][j] = -1;
+				for(int k=0;k<8;k++)
+					b[i+x8[k]][j+y8[k]]+=((a[i+x8[k]][j+y8[k]]!='x') && bound(i+x8[k],j+y8[k]));
+			}
 	rep(0,n){
 		rup(0,m){
-			if(a[i][j]=='o'){
-				int c=0;
-				for(int k=0;k<8;k++)
-					if(bound(i+dx8[k],j+dy8[k]))
-						if(a[i+dx8[k]][j+dy8[k]]=='x')
-							c++;
-				cout << c;
-			}else
-				cout << 'x';
-		}
-		cout << endl;
+			if(a[i][j]== 'x')
+				cout << "x ";
+			else
+				cout << b[i][j] << ' ';
+		}cout << endl;
 	}
+	
 }
