@@ -50,21 +50,21 @@ struct point{
     }
 };
 
-double operator*(point& a, point& b){
+double operator*(point a, point b){
     return (a.x * b.x) + (a.y * b.y);
 }
 
-point operator+(point& a, point& b){
+point operator+(point a, point b){
     point result(a.x + b.x, a.y + b.y);
     return result;
 }
 
-point operator-(point& a, point& b){
+point operator-(point a, point b){
     point result(a.x - b.x, a.y - b.y);
     return result;
 }
 
-point operator*(double& a, point& b){
+point operator*(double a, point b){
     point result(a * b.x, a * b.y);
     return result;
 }
@@ -236,7 +236,19 @@ int main(){
         }
     }
 
-    if(h.size() == 2*n-2 && n > 3){
+    if(h.size() == 2*n-2){ // All points are collinear
+        for(point at : mass){
+            point ref = (2.0 * com) - at;
+            if(close_to_int(ref.x) && close_to_int(ref.y)){
+                if(is_point.find(mp(ref.x, ref.y)) == is_point.end()){
+                    cout << "1\n";
+                    return 0;
+                }
+            }else{
+                cout << "1\n";
+                return 0;
+            }
+        }
         cout << "2\n";
         return 0;
     }
